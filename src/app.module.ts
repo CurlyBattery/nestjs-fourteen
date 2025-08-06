@@ -5,11 +5,14 @@ import { SongsController } from './songs/songs.controller';
 import { DevConfigService } from './common/providers/dev-config.service.provider';
 import { AppService } from './app.service';
 import { AppController } from './app.controller';
-import { PlaylistModule } from './playlists/playlist.module';
+import { PlaylistsModule } from './playlists/playlists.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Playlist } from './playlists/entities/playlist.entity';
 import { Song } from './songs/entities/song.entity';
 import { DataSource } from 'typeorm';
+import { ArtistsModule } from './artists/artists.module';
+import { UsersModule } from './users/users.module';
+import { AuthModule } from './auth/auth.module';
 
 const devConfig = { port: 3000 };
 const proConfig = { port: 4000 };
@@ -17,7 +20,7 @@ const proConfig = { port: 4000 };
 @Module({
   imports: [
     SongsModule,
-    PlaylistModule,
+    PlaylistsModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: 'localhost',
@@ -28,6 +31,9 @@ const proConfig = { port: 4000 };
       synchronize: true,
       autoLoadEntities: true,
     }),
+    ArtistsModule,
+    UsersModule,
+    AuthModule,
   ],
   providers: [
     AppService,

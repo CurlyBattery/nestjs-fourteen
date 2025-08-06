@@ -18,11 +18,22 @@ POST http://localhost:3000/songs
 Content-Type: application/json
 
 {
-  "title": "Порш",
-  "artists": ["OG Buda"],
-  "releasedDate": "2023-09-29",
+  "title": "911",
+  "artists": [1],
+  "releasedDate": "2025-09-29",
   "duration": "02:34"
 }
 
 ###
-GET localhost:3000/songs
+GET localhost:3000/songs?page=1&limit=10
+
+
+###
+POST http://localhost:3000/playlists
+Content-Type: application/json
+
+{
+  "name": "Порш11",
+  "songs": [22, 23],
+  "user": 2
+}
