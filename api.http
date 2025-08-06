@@ -1,18 +1,16 @@
-DELETE http://localhost:3000/songs/1
+###
+DELETE http://localhost:3000/songs/3
 
 ###
-GET http://localhost:3000/songs/1
+GET http://localhost:3000/songs/3
 Accept: application/json
 
 ###
-PATCH http://localhost:3000/songs/1
+PATCH http://localhost:3000/songs/3
 Content-Type: application/json
 
 {
-  "title": "Порш",
-  "artists": ["OG Buda"],
-  "releasedDate": "2023-09-29",
-  "duration": "02:34"
+  "title": "Порш3"
 }
 
 ###
