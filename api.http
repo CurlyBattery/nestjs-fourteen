@@ -1,3 +1,5 @@
+
+// Songs
 ###
 DELETE http://localhost:3000/songs/3
 
@@ -24,11 +26,14 @@ Content-Type: application/json
   "duration": "02:34"
 }
 
-###
+### Get all songs
 GET localhost:3000/songs?page=1&limit=10
 
 
-###
+
+// Playlists
+
+### Create Playlist
 POST http://localhost:3000/playlists
 Content-Type: application/json
 
@@ -36,4 +41,25 @@ Content-Type: application/json
   "name": "Порш11",
   "songs": [22, 23],
   "user": 2
+}
+
+### Signup User
+POST http://localhost:3000/auth/signup
+Content-Type: application/json
+
+{
+"firstName": "Artem",
+"lastName": "Kosyrev",
+"email": "cosinusgradusov90@gmail.com",
+"password": "123456"
+}
+
+
+### Login User
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+  "email": "cosinusgradusov90@gmail.com",
+  "password": "123456"
 }

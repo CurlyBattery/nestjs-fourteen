@@ -8,6 +8,7 @@ import {
 } from 'typeorm';
 import { Artist } from '../../artists/entities/artist.entity';
 import { Playlist } from '../../playlists/entities/playlist.entity';
+import { Exclude } from 'class-transformer';
 
 @Entity('users')
 export class User {
@@ -20,10 +21,11 @@ export class User {
   @Column()
   lastName: string;
 
-  @Column()
+  @Column({ unique: true })
   email: string;
 
   @Column()
+  @Exclude()
   password: string;
 
   @OneToMany(() => Playlist, (playlist) => playlist.user)
