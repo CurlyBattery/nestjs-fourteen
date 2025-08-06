@@ -5,12 +5,16 @@ import { UsersService } from '../users/users.service';
 import { LoginDto } from './dto/login.dto';
 import { User } from '../users/entities/user.entity';
 import { JwtService } from '@nestjs/jwt';
+import { ArtistsService } from '../artists/artists.service';
+import { async } from 'rxjs';
+import { PayloadType } from './types/payload.type';
 
 @Injectable()
 export class AuthService {
   constructor(
     private readonly usersService: UsersService,
     private readonly jwtService: JwtService,
+    private readonly artistsService: ArtistsService,
   ) {}
 
   async login(loginDto: LoginDto): Promise<{ accessToken: string }> {
@@ -23,7 +27,12 @@ export class AuthService {
     if (passwordMatched) {
       delete user.password;
 
-      const payload = { email: user.email, sub: user.id };
+      const payload: PayloadType = { email: user.email, userId: user.id };
+      const artist = await this.artistsService.findArtist(user.id);
+      if (artist) {
+        payload.artistId = artist.id;
+      }
+
       const accessToken = this.jwtService.sign(payload);
 
       return { accessToken };

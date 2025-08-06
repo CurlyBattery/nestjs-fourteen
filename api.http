@@ -15,7 +15,7 @@ Content-Type: application/json
   "title": "Порш3"
 }
 
-###
+### Create Song
 POST http://localhost:3000/songs
 Content-Type: application/json
 
@@ -28,8 +28,6 @@ Content-Type: application/json
 
 ### Get all songs
 GET localhost:3000/songs?page=1&limit=10
-
-
 
 // Playlists
 
@@ -54,7 +52,6 @@ Content-Type: application/json
 "password": "123456"
 }
 
-
 ### Login User
 POST http://localhost:3000/auth/login
 Content-Type: application/json
@@ -63,3 +60,7 @@ Content-Type: application/json
   "email": "cosinusgradusov90@gmail.com",
   "password": "123456"
 }
+
+### Get Profile
+GET http://localhost:3000/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvc2ludXNncmFkdXNvdjkwQGdtYWlsLmNvbSIsInN1YiI6MSwiaWF0IjoxNzU0NDk5OTA5LCJleHAiOjE3NTQ1MDM1MDl9.A8YUesOvsMigN3kGz2UWbhJKqgkhpvh1jMBn3pYSmTo
