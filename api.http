@@ -1,13 +1,13 @@
 
 // Songs
-###
+### Delete Song
 DELETE http://localhost:3000/songs/3
 
-###
+### Get One Song
 GET http://localhost:3000/songs/3
 Accept: application/json
 
-###
+### Update Song
 PATCH http://localhost:3000/songs/3
 Content-Type: application/json
 
@@ -18,12 +18,13 @@ Content-Type: application/json
 ### Create Song
 POST http://localhost:3000/songs
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJ5cHJvYkBnbWFpbC5jb20iLCJ1c2VySWQiOjYsImFydGlzdElkIjozLCJpYXQiOjE3NTQ1Mzc1MTAsImV4cCI6MTc1NDU0MTExMH0.2_xMyUNv47flqOBQCclwVq4qRRtwprrD6ioi4TsECBo
 
 {
-  "title": "911",
-  "artists": [1],
-  "releasedDate": "2025-09-29",
-  "duration": "02:34"
+  "title": "Hit Em Up",
+  "artists": [3],
+  "releasedDate": "2025-08-29",
+  "duration": "01:34"
 }
 
 ### Get all songs
@@ -46,9 +47,9 @@ POST http://localhost:3000/auth/signup
 Content-Type: application/json
 
 {
-"firstName": "Artem",
-"lastName": "Kosyrev",
-"email": "cosinusgradusov90@gmail.com",
+"firstName": "Islam",
+"lastName": "Gadilyaev",
+"email": "byprob@gmail.com",
 "password": "123456"
 }
 
@@ -57,10 +58,10 @@ POST http://localhost:3000/auth/login
 Content-Type: application/json
 
 {
-  "email": "cosinusgradusov90@gmail.com",
+  "email": "byprob@gmail.com",
   "password": "123456"
 }
 
 ### Get Profile
 GET http://localhost:3000/users
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvc2ludXNncmFkdXNvdjkwQGdtYWlsLmNvbSIsInN1YiI6MSwiaWF0IjoxNzU0NDk5OTA5LCJleHAiOjE3NTQ1MDM1MDl9.A8YUesOvsMigN3kGz2UWbhJKqgkhpvh1jMBn3pYSmTo
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJ5cHJvYkBnbWFpbC5jb20iLCJ1c2VySWQiOjYsImFydGlzdElkIjozLCJpYXQiOjE3NTQ1Mzc1MTAsImV4cCI6MTc1NDU0MTExMH0.2_xMyUNv47flqOBQCclwVq4qRRtwprrD6ioi4TsECBo
