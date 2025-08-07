@@ -47,9 +47,9 @@ POST http://localhost:3000/auth/signup
 Content-Type: application/json
 
 {
-"firstName": "Islam",
-"lastName": "Gadilyaev",
-"email": "byprob@gmail.com",
+"firstName": "John",
+"lastName": "Doe",
+"email": "john@gmail.com",
 "password": "123456"
 }
 
@@ -58,10 +58,29 @@ POST http://localhost:3000/auth/login
 Content-Type: application/json
 
 {
-  "email": "byprob@gmail.com",
+  "email": "john@gmail.com",
   "password": "123456"
 }
 
 ### Get Profile
 GET http://localhost:3000/users
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJ5cHJvYkBnbWFpbC5jb20iLCJ1c2VySWQiOjYsImFydGlzdElkIjozLCJpYXQiOjE3NTQ1Mzc1MTAsImV4cCI6MTc1NDU0MTExMH0.2_xMyUNv47flqOBQCclwVq4qRRtwprrD6ioi4TsECBo
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5AZ21haWwuY29tIiwidXNlcklkIjo3LCJpYXQiOjE3NTQ1NDMzMTMsImV4cCI6MTc1NDU0NjkxM30.nSh8UGVsRZBZg9ZHmLWPOU67R_gE52pR7-peh6wL3DY
+
+### Two Factor Authentication Enable
+POST http://localhost:3000/auth/enable-2fa
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5AZ21haWwuY29tIiwidXNlcklkIjo3LCJpYXQiOjE3NTQ1NDMzMTMsImV4cCI6MTc1NDU0NjkxM30.nSh8UGVsRZBZg9ZHmLWPOU67R_gE52pR7-peh6wL3DY
+
+### Two Factor Authentication Verify
+POST http://localhost:3000/auth/validate-2fa
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5AZ21haWwuY29tIiwidXNlcklkIjo3LCJpYXQiOjE3NTQ1NDMzMTMsImV4cCI6MTc1NDU0NjkxM30.nSh8UGVsRZBZg9ZHmLWPOU67R_gE52pR7-peh6wL3DY
+
+{
+  "token": "261541"
+}
+
+### Two Factor Authentication Desable
+PATCH http://localhost:3000/auth/disable-2fa
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5AZ21haWwuY29tIiwidXNlcklkIjo3LCJpYXQiOjE3NTQ1NDQ2MjIsImV4cCI6MTc1NDU0ODIyMn0.D4bKREsCHL8e1toSWa18jsIr8x9OCm_95SgEDJpQdm0
