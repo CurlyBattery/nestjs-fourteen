@@ -6,7 +6,6 @@ import {
   OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { Artist } from '../../artists/entities/artist.entity';
 import { Playlist } from '../../playlists/entities/playlist.entity';
 import { Exclude } from 'class-transformer';
 

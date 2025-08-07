@@ -27,7 +27,6 @@ export class UsersService {
     });
     const user = await this.usersRepository.save(newUser);
     delete user.password;
-    console.log(23);
     return user;
   }
 

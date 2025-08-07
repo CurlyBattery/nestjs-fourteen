@@ -17,9 +17,8 @@ export const typeOrmAsyncConfig: TypeOrmModuleAsyncOptions = {
       username: configService.getOrThrow<string>('POSTGRES_USER'),
       database: configService.getOrThrow<string>('POSTGRES_DB'),
       password: configService.getOrThrow<string>('POSTGRES_PASSWORD'),
-      entities: ['dist/**/*.entity.js'],
-      synchronize: false,
       migrations: ['dist/db/migrations/*.js'],
+      autoLoadEntities: true,
     };
   },
   inject: [ConfigService],

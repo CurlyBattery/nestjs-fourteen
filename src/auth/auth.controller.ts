@@ -19,6 +19,7 @@ import { Enable2FAType } from './types/payload.type';
 import { ValidateTokenDto } from './dto/validate-token.dto';
 import { UpdateResult } from 'typeorm';
 import { AuthGuard } from '@nestjs/passport';
+import { ApiBearerAuth, ApiOperation, ApiResponse } from '@nestjs/swagger';
 
 @Controller('auth')
 export class AuthController {
@@ -28,11 +29,21 @@ export class AuthController {
   ) {}
 
   @Post('signup')
+  @ApiOperation({ summary: 'Register new user' })
+  @ApiResponse({
+    status: 201,
+    description: 'It will return the user in the response',
+  })
   signup(@Body() createUserDto: CreateUserDto): Promise<User> {
     return this.usersService.create(createUserDto);
   }
 
   @Post('login')
+  @ApiOperation({ summary: 'Login user' })
+  @ApiResponse({
+    status: 200,
+    description: 'It will give you the access token in the response',
+  })
   login(@Body() loginDto: LoginDto) {
     return this.authService.login(loginDto);
   }
@@ -64,6 +75,7 @@ export class AuthController {
 
   @Get('profile')
   @UseGuards(AuthGuard('bearer'))
+  @ApiBearerAuth('JWT-auth')
   getProfile(@Req() req: any) {
     return {
       message: 'authenticated with api key',
