@@ -10,27 +10,26 @@ import { ArtistsModule } from './artists/artists.module';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
+import { typeOrmAsyncConfig } from './db/data-source';
+import { SeedModule } from './seed/seed.module';
+import configuration from './config/configuration';
+import { validate } from '../env.validation';
 
 @Module({
   imports: [
     SongsModule,
     PlaylistsModule,
-    TypeOrmModule.forRoot({
-      type: 'postgres',
-      host: 'localhost',
-      port: 5432,
-      username: 'username',
-      password: 'password',
-      database: 'mydb',
-      synchronize: true,
-      autoLoadEntities: true,
-    }),
+    TypeOrmModule.forRootAsync(typeOrmAsyncConfig),
     ArtistsModule,
     UsersModule,
     AuthModule,
     ConfigModule.forRoot({
       isGlobal: true,
+      envFilePath: ['.env.development', '.env.production'],
+      load: [configuration],
+      validate,
     }),
+    SeedModule,
   ],
 })
 export class AppModule implements NestModule {
@@ -38,12 +37,6 @@ export class AppModule implements NestModule {
     console.log('dbName:', dataSource.driver.database);
   }
   configure(consumer: MiddlewareConsumer) {
-    // consumer.apply(LoggerMiddleware).forRoutes('songs');
-
-    // consumer
-    //   .apply(LoggerMiddleware)
-    //   .forRoutes({ path: 'songs', method: RequestMethod.POST });
-
     consumer.apply(LoggerMiddleware).forRoutes(SongsController);
   }
 }

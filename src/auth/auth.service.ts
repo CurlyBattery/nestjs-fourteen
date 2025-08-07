@@ -8,6 +8,8 @@ import { LoginDto } from './dto/login.dto';
 import { ArtistsService } from '../artists/artists.service';
 import { Enable2FAType, PayloadType } from './types/payload.type';
 import { UpdateResult } from 'typeorm';
+import { User } from '../users/entities/user.entity';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class AuthService {
@@ -15,6 +17,7 @@ export class AuthService {
     private readonly usersService: UsersService,
     private readonly jwtService: JwtService,
     private readonly artistsService: ArtistsService,
+    private readonly configService: ConfigService,
   ) {}
 
   async login(
@@ -80,5 +83,16 @@ export class AuthService {
 
   async disable2FA(userId: number): Promise<UpdateResult> {
     return this.usersService.disable2FA(userId);
+  }
+
+  async validateUserByApiKey(apiKey: string): Promise<User> {
+    console.log(apiKey);
+    return this.usersService.findByApiKey(apiKey);
+  }
+
+  getEnvVariable() {
+    return {
+      port: this.configService.get<number>('PORT'),
+    };
   }
 }

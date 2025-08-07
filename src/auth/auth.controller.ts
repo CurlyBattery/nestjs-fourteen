@@ -1,4 +1,12 @@
-import { Body, Controller, Patch, Post, Req, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Patch,
+  Post,
+  Req,
+  UseGuards,
+} from '@nestjs/common';
 import { Request } from 'express';
 
 import { UsersService } from '../users/users.service';
@@ -10,6 +18,7 @@ import { JwtGuard } from './guards/jwt.guard';
 import { Enable2FAType } from './types/payload.type';
 import { ValidateTokenDto } from './dto/validate-token.dto';
 import { UpdateResult } from 'typeorm';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('auth')
 export class AuthController {
@@ -51,5 +60,19 @@ export class AuthController {
   @UseGuards(JwtGuard)
   disable(@Req() req: any): Promise<UpdateResult> {
     return this.authService.disable2FA(req.user.userId);
+  }
+
+  @Get('profile')
+  @UseGuards(AuthGuard('bearer'))
+  getProfile(@Req() req: any) {
+    return {
+      message: 'authenticated with api key',
+      user: req.user,
+    };
+  }
+
+  @Get('test')
+  testEnvVariable() {
+    return this.authService.getEnvVariable();
   }
 }

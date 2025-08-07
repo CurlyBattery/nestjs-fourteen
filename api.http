@@ -62,10 +62,6 @@ Content-Type: application/json
   "password": "123456"
 }
 
-### Get Profile
-GET http://localhost:3000/users
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5AZ21haWwuY29tIiwidXNlcklkIjo3LCJpYXQiOjE3NTQ1NDMzMTMsImV4cCI6MTc1NDU0NjkxM30.nSh8UGVsRZBZg9ZHmLWPOU67R_gE52pR7-peh6wL3DY
-
 ### Two Factor Authentication Enable
 POST http://localhost:3000/auth/enable-2fa
 Content-Type: application/json
@@ -84,3 +80,10 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5AZ
 PATCH http://localhost:3000/auth/disable-2fa
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5AZ21haWwuY29tIiwidXNlcklkIjo3LCJpYXQiOjE3NTQ1NDQ2MjIsImV4cCI6MTc1NDU0ODIyMn0.D4bKREsCHL8e1toSWa18jsIr8x9OCm_95SgEDJpQdm0
+
+### Get Profile
+GET http://localhost:3000/auth/profile
+Authorization: Bearer 0adb1f66-12c4-4281-a0da-26cdb52f0337
+
+### Test
+GET http://localhost:3000/auth/test
