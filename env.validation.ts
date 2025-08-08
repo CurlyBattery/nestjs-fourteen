@@ -39,6 +39,7 @@ export function validate(config: Record<string, unknown>) {
   const errors = validateSync(validatedConfig, {
     skipMissingProperties: false,
   });
+  console.log(errors);
 
   if (errors.length > 0) {
     throw new Error(errors.toString());

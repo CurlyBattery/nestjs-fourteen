@@ -3,11 +3,12 @@ import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
 import { SeedService } from './seed/seed.service';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { ConfigService } from '@nestjs/config';
 declare const module: any;
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-
+  const configService = app.get(ConfigService);
   app.useGlobalPipes(new ValidationPipe());
 
   // const seedService = app.get(SeedService);
@@ -33,7 +34,7 @@ async function bootstrap() {
   SwaggerModule.setup('api', app, document);
 
   await app.listen(process.env.PORT ?? 3000);
-
+  console.log(configService.get<string>('NODE_ENV'));
   if (module.hot) {
     module.hot.accept();
     module.hot.dispose(() => app.close());
